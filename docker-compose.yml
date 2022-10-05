@@ -1,15 +1,15 @@
 version: "3"
 services:
   maven:
-    build: maven/
+    build: ./maven
     volumes:
-      - boxfuse-sample-java-war-hello/:/usr/src/mymaven/
+      - ./boxfuse-sample-java-war-hello:/usr/src/mymaven
   tomcat:
     image: tomcat:9
     volumes:
       - type: bind
-        source: boxboxfuse-sample-java-war-hello/target
-        target: /usr/local/tomcat/webapps/
+        source: ./boxboxfuse-sample-java-war-hello/target
+        target: /usr/local/tomcat/webapps
     ports:
       - "8080:8080"
     depends_on:
