@@ -1,7 +1,7 @@
 version: "3"
 services:
   maven:
-    build: ./maven
+    build: maven
     volumes:
       - type: bind
         source: boxboxfuse-sample-java-war-hello
