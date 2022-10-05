@@ -7,7 +7,10 @@ services:
   tomcat:
     image: tomcat:9
     volumes:
-      - boxboxfuse-sample-java-war-hello/target:/usr/local/tomcat/webapps/
+      - type: bind
+        source: boxboxfuse-sample-java-war-hello/target
+        target: /usr/local/tomcat/webapps/
+        create_host_path: true
     ports:
       - "8080:8080"
     depends_on:
