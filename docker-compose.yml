@@ -1,0 +1,14 @@
+version: "3"
+services:
+  maven:
+    build: maven/
+    volumes:
+      - boxfuse-sample-java-war-hello/:/usr/src/mymaven/
+  tomcat:
+    image: tomcat:9
+    volumes:
+      - boxboxfuse-sample-java-war-hello/target:/usr/local/tomcat/webapps/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - maven
