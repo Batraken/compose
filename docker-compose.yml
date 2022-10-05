@@ -2,8 +2,6 @@ version: "3"
 services:
   maven:
     build: ./maven
-    volumes:
-      - ./boxfuse-sample-java-war-hello:/usr/src/mymaven
   tomcat:
     image: tomcat:9
     volumes:
