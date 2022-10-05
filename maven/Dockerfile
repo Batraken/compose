@@ -1,3 +1,3 @@
-FROM maven:3.8.6-eclipse-temurin-11-alpine
+FROM maven:alpine
 WORKDIR /usr/src/mymaven
 RUN MVN clean install
