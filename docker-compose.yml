@@ -2,15 +2,11 @@ version: "3"
 services:
   maven:
     build: maven
-    volumes:
-      - type: bind
-        source: maven/boxboxfuse-sample-java-war-hello
-        target: /usr/src/mymaven
   tomcat:
     image: tomcat:9
     volumes:
-      - type: bind
-        source: maven/boxboxfuse-sample-java-war-hello/target
+      - type: volume
+        source: /usr/src/mymaven/target
         target: /usr/local/tomcat/webapps
     ports:
       - "8080:8080"
