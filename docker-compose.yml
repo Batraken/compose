@@ -5,8 +5,9 @@ services:
     volumes: 
       - ./boxfuse:/usr/src/mymaven
       - prod:/usr/src/prod
-    command: mvn clean install
-             cp /usr/src/mymaven/target/*.war /usr/src/prod
+    command: > 
+        bash -c "mvn clean install
+        && cp /usr/src/mymaven/target/*.war /usr/src/prod"
   tomcat:
     build: ./tomcat
     volumes:
