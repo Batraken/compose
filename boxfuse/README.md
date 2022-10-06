@@ -1,23 +1,54 @@
-boxfuse-sample-java-war-hello
-=============================
+# java-tomcat-maven-example
 
-Boxfuse Sample Hello World Java application packaged as a war file
+This is an example ready-to-deploy java web application built for Tomcat using Maven and webapp-runner.
 
-## Prerequisites
+## Running Locally
 
-- Git
-- Java
-- Maven
-- VirtualBox
-- Boxfuse
+(need maven and java installed)
 
-## Running
+```
+mvn package
+java -jar target/dependency/webapp-runner.jar target/*.war
+```
 
-1. git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello
-2. cd boxfuse-sample-java-war-hello
-3. mvn package
-4. boxfuse run target/hello-1.0.war
+The application will be available on `http://localhost:8080`.
 
-Done!
+## How This Was Built
 
-Open your browser at http://localhost:8888 or simple type ```boxfuse open hello:1.0``` to see your brand new instance in action!
+1. Generate the project using a Maven archetype:
+
+   ```
+   mvn archetype:generate -DarchetypeArtifactId=maven-archetype-webapp
+   ```
+
+2. Add the webapp-runner plugin into the `pom.xml`:
+
+   ```
+   <build>
+     <!-- ... -->
+     <plugins>
+       <!-- ... -->
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-dependency-plugin</artifactId>
+         <version>2.3</version>
+         <executions>
+           <execution>
+             <phase>package</phase>
+             <goals><goal>copy</goal></goals>
+             <configuration>
+               <artifactItems>
+                 <artifactItem>
+                   <groupId>com.github.jsimone</groupId>
+                   <artifactId>webapp-runner</artifactId>
+                   <version>8.5.11.3</version>
+                   <destFileName>webapp-runner.jar</destFileName>
+                 </artifactItem>
+               </artifactItems>
+             </configuration>
+           </execution>
+         </executions>
+       </plugin>
+     </plugins>
+   </build>
+   ```
