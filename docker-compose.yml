@@ -7,7 +7,7 @@ services:
     command: mvn clean install
   tomcat:
     build: ./tomcat
-    volumes:
-      - ./boxfuse/target:/usr/local/tomcat/webapp:shared
+#    volumes:
+#      - ./boxfuse/target:/usr/local/tomcat/webapp:shared
     ports:
       - "8080:8080"
