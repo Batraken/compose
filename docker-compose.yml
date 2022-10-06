@@ -1,12 +1,15 @@
-version: "3"
+version: '3'
 services:
   maven:
-    build: maven
+    build: ./maven
+    volumes: 
+      - ./boxfuse:/usr/src/mymaven
+    command: mvn clean install
   tomcat:
-    image: tomcat:9
+    build: ./tomcat
     volumes:
-      - type: volume
-        source: /usr/src/mymaven/target
-        target: /usr/local/tomcat/webapps
+      - ./boxfuse/target:/usr/local/tomcat/webapp
     ports:
       - "8080:8080"
+    depends_on:
+      - build
