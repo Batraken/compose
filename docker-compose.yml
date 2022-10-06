@@ -4,10 +4,10 @@ services:
     build: ./maven
     volumes: 
       - ./boxfuse:/usr/src/mymaven:shared
-    command: mvn clean install
+    command: mvn clean package
   tomcat:
     build: ./tomcat
-#    volumes:
-#      - ./boxfuse/target:/usr/local/tomcat/webapp:shared
+    volumes:
+      - ./boxfuse/target:/usr/local/tomcat/webapp:shared
     ports:
       - "8080:8080"
