@@ -11,5 +11,3 @@ services:
       - ./boxfuse/target:/usr/local/tomcat/webapp
     ports:
       - "8080:8080"
-    depends_on:
-      - build
