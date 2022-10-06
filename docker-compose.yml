@@ -3,11 +3,14 @@ services:
   maven:
     build: ./maven
     volumes: 
-      - ./boxfuse:/usr/src/mymaven:shared
-    command: mvn clean package
+      - ./boxfuse:/usr/src/mymaven
+      - prod:/usr/src/prod
+    command: mvn clean deploy /usr/srv/prod
   tomcat:
     build: ./tomcat
     volumes:
-      - ./boxfuse/target:/usr/local/tomcat/webapp:shared
+      - prod:/usr/local/tomcat/webapp
     ports:
       - "8080:8080"
+volumes:
+  prod
