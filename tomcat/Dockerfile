@@ -1,1 +1,1 @@
-FROM tomcat:9
+FROM tomcat:alpine
