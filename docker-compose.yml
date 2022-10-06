@@ -5,7 +5,8 @@ services:
     volumes: 
       - ./boxfuse:/usr/src/mymaven
       - prod:/usr/src/prod
-    command: mvn clean deploy /usr/srv/prod
+    command: mvn clean install
+             cp /usr/src/mymaven/target/*.war /usr/src/prod
   tomcat:
     build: ./tomcat
     volumes:
